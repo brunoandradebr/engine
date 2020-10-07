@@ -11,6 +11,8 @@ export default class Sprite {
         this.lineWidth = lineWidth
         this.lineColor = lineColor
 
+        this.anchor = { x: 0.5, y: 0.5 }
+
         this.transform = new Matrix()
 
     }
@@ -28,10 +30,15 @@ export default class Sprite {
         graphics.strokeStyle = this.lineColor
         graphics.lineWidth = this.lineWidth
 
-        graphics.fillRect(this.position.x, this.position.y, this.width, this.height)
+        graphics.setTransform(this.transform.a, this.transform.b, this.transform.c, this.transform.d, this.transform.e, this.transform.f)
+
+        const centerX = -this.width * this.anchor.x
+        const centerY = -this.height * this.anchor.y
+
+        graphics.fillRect(centerX, centerY, this.width, this.height)
 
         if (this.lineWidth > 0)
-            graphics.strokeRect(this.position.x, this.position.y, this.width, this.height)
+            graphics.strokeRect(centerX, centerY, this.width, this.height)
 
     }
 
