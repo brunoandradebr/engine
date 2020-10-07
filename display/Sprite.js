@@ -26,11 +26,13 @@ export default class Sprite {
      */
     draw(graphics, alpha) {
 
+        graphics.save()
+
         graphics.fillStyle = this.fillColor
         graphics.strokeStyle = this.lineColor
         graphics.lineWidth = this.lineWidth
 
-        graphics.setTransform(this.transform.a, this.transform.b, this.transform.c, this.transform.d, this.transform.e, this.transform.f)
+        graphics.transform(this.transform.a, this.transform.b, this.transform.c, this.transform.d, this.transform.e, this.transform.f)
 
         const centerX = -this.width * this.anchor.x
         const centerY = -this.height * this.anchor.y
@@ -39,6 +41,8 @@ export default class Sprite {
 
         if (this.lineWidth > 0)
             graphics.strokeRect(centerX, centerY, this.width, this.height)
+
+        graphics.restore()
 
     }
 

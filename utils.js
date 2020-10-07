@@ -1,5 +1,10 @@
 const trace = (...content) => console.log(...content)
 
+const PI = Math.PI
+const PI2 = 2 * PI
+const toRad = PI / 180
+const toDeg = 180 / PI
+
 const DEVICE = {
     width: window.innerWidth,
     height: window.innerHeight,
