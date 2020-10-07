@@ -11,23 +11,39 @@ export default class Matrix {
 
     }
 
-    get a(){
+    get a() {
         return this.m[0][0]
     }
-    get b(){
+    get b() {
         return this.m[1][0]
     }
-    get c(){
+    get c() {
         return this.m[0][1]
     }
-    get d(){
+    get d() {
         return this.m[1][1]
     }
-    get e(){
+    get e() {
         return this.m[0][3]
     }
-    get f(){
+    get f() {
         return this.m[1][3]
+    }
+
+    multiply(M) {
+         
+    }
+
+    rotateZ(angle) {
+        const c = Math.cos(angle)
+        const s = Math.sin(angle)
+        const R = [
+            [c, -s, 0, 0],
+            [s, c, 0, 0],
+            [0, 0, 1, 0],
+            [0, 0, 0, 1],
+        ]
+        return this.multiply(R)
     }
 
 }
