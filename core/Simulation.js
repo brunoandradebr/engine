@@ -10,6 +10,7 @@ export default class Simulation {
         this.canvas.style.height = DEVICE.height + 'px'
         document.body.style.margin = 0
         document.body.style.padding = 0
+        document.body.style.backgroundColor = '#242528'
         document.body.style.overflow = 'hidden'
 
         this.FPS = 1 / FPS
