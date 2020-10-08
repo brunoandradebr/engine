@@ -11,9 +11,10 @@ let angle = 0
 app.fixedUpdate = (dt) => {
     angle += 1 * dt
     sprite.transform.identity()
-    sprite.transform.translate(150, 150)
+    sprite.transform.translate(DEVICE.centerX, DEVICE.centerY)
     sprite.transform.rotateX(80)
     sprite.transform.rotateZ(angle)
+    sprite.transform.scale(10, 10, 10)
 }
 
 app.render = (graphics) => {

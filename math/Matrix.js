@@ -129,16 +129,28 @@ export default class Matrix {
         return this.multiply(R)
     }
 
-    translate(x = 0, y = 0, z = 0) {
+    scale(x = 1, y = 1, z = 1) {
 
         const S = new Matrix([
+            [x, 0, 0, 0],
+            [0, y, 0, 0],
+            [0, 0, z, 0],
+            [0, 0, 0, 1],
+        ])
+
+        return this.multiply(S)
+    }
+
+    translate(x = 0, y = 0, z = 0) {
+
+        const T = new Matrix([
             [1, 0, 0, x],
             [0, 1, 0, y],
             [0, 0, 1, z],
             [0, 0, 0, 1],
         ])
 
-        return this.multiply(S)
+        return this.multiply(T)
     }
 
     /**
