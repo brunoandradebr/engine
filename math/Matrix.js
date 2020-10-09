@@ -81,6 +81,61 @@ export default class Matrix {
 
     }
 
+    postMultiply(matrix) {
+        return this.multiply(matrix)
+    }
+
+    preMultiply(matrix) {
+
+        const A = matrix.m
+        const B = this.m
+
+        // first row
+        const m1_1 = A[0][0] * B[0][0] + A[0][1] * B[1][0] + A[0][2] * B[2][0] + A[0][3] * B[3][0]
+        const m1_2 = A[0][0] * B[0][1] + A[0][1] * B[1][1] + A[0][2] * B[2][1] + A[0][3] * B[3][1]
+        const m1_3 = A[0][0] * B[0][2] + A[0][1] * B[1][2] + A[0][2] * B[2][2] + A[0][3] * B[3][2]
+        const m1_4 = A[0][0] * B[0][3] + A[0][1] * B[1][3] + A[0][2] * B[2][3] + A[0][3] * B[3][3]
+        // second row
+        const m2_1 = A[1][0] * B[0][0] + A[1][1] * B[1][0] + A[1][2] * B[2][0] + A[1][3] * B[3][0]
+        const m2_2 = A[1][0] * B[0][1] + A[1][1] * B[1][1] + A[1][2] * B[2][1] + A[1][3] * B[3][1]
+        const m2_3 = A[1][0] * B[0][2] + A[1][1] * B[1][2] + A[1][2] * B[2][2] + A[1][3] * B[3][2]
+        const m2_4 = A[1][0] * B[0][3] + A[1][1] * B[1][3] + A[1][2] * B[2][3] + A[1][3] * B[3][3]
+        // third row
+        const m3_1 = A[2][0] * B[0][0] + A[2][1] * B[1][0] + A[2][2] * B[2][0] + A[2][3] * B[3][0]
+        const m3_2 = A[2][0] * B[0][1] + A[2][1] * B[1][1] + A[2][2] * B[2][1] + A[2][3] * B[3][1]
+        const m3_3 = A[2][0] * B[0][2] + A[2][1] * B[1][2] + A[2][2] * B[2][2] + A[2][3] * B[3][2]
+        const m3_4 = A[2][0] * B[0][3] + A[2][1] * B[1][3] + A[2][2] * B[2][3] + A[2][3] * B[3][3]
+        // fourth row
+        const m4_1 = A[3][0] * B[0][0] + A[3][1] * B[1][0] + A[3][2] * B[2][0] + A[3][3] * B[3][0]
+        const m4_2 = A[3][0] * B[0][1] + A[3][1] * B[1][1] + A[3][2] * B[2][1] + A[3][3] * B[3][1]
+        const m4_3 = A[3][0] * B[0][2] + A[3][1] * B[1][2] + A[3][2] * B[2][2] + A[3][3] * B[3][2]
+        const m4_4 = A[3][0] * B[0][3] + A[3][1] * B[1][3] + A[3][2] * B[2][3] + A[3][3] * B[3][3]
+
+        // result first row
+        this.m[0][0] = m1_1
+        this.m[0][1] = m1_2
+        this.m[0][2] = m1_3
+        this.m[0][3] = m1_4
+        // result second row
+        this.m[1][0] = m2_1
+        this.m[1][1] = m2_2
+        this.m[1][2] = m2_3
+        this.m[1][3] = m2_4
+        // result third row
+        this.m[2][0] = m3_1
+        this.m[2][1] = m3_2
+        this.m[2][2] = m3_3
+        this.m[2][3] = m3_4
+        // result fourth row
+        this.m[3][0] = m4_1
+        this.m[3][1] = m4_2
+        this.m[3][2] = m4_3
+        this.m[3][3] = m4_4
+
+        return this
+
+    }
+
     rotateX(angle) {
 
         const rad = angle * toRad
