@@ -33,7 +33,18 @@ export default class Matrix {
     multiply(matrix) {
 
         const A = this.m
-        const B = matrix.m
+        let B
+
+        if (matrix.constructor.name == 'Matrix') {
+            B = matrix.m
+        } else {
+            B = new Matrix([
+                [1, 0, 0, matrix.x],
+                [0, 1, 0, matrix.y],
+                [0, 0, 1, matrix.z],
+                [0, 0, 0, 1],
+            ]).m
+        }
 
         // first row
         const m1_1 = A[0][0] * B[0][0] + A[0][1] * B[1][0] + A[0][2] * B[2][0] + A[0][3] * B[3][0]
