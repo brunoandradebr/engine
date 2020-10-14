@@ -10,6 +10,12 @@ export default class Vector {
         return new Vector(this.x, this.y, this.z)
     }
 
+    update(x, y, z) {
+        this.x = x || this.x
+        this.y = y || this.y
+        this.z = z || this.z
+    }
+
     add(v) {
         this.x += v.x
         this.y += v.y

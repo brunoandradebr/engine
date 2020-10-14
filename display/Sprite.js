@@ -13,6 +13,13 @@ export default class Sprite {
 
         this.anchor = { x: 0.5, y: 0.5 }
 
+        this.xAngle = 0
+        this.yAngle = 0
+        this.zAngle = 0
+
+        this.xScale = 1
+        this.yScale = 1
+
         this.transform = new Matrix()
 
     }
@@ -32,6 +39,12 @@ export default class Sprite {
         graphics.strokeStyle = this.lineColor
         graphics.lineWidth = this.lineWidth
 
+        this.transform.translate(this.position.x, this.position.y)
+        this.transform.rotateY(this.yAngle)
+        this.transform.rotateX(this.xAngle)
+        this.transform.rotateZ(this.zAngle)
+        this.transform.scale(this.xScale, this.yScale)
+
         graphics.transform(this.transform.a, this.transform.b, this.transform.c, this.transform.d, this.transform.e, this.transform.f)
 
         const centerX = -this.width * this.anchor.x
@@ -43,6 +56,8 @@ export default class Sprite {
             graphics.strokeRect(centerX, centerY, this.width, this.height)
 
         graphics.restore()
+
+        this.transform.identity()
 
     }
 
