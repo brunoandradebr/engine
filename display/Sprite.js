@@ -45,7 +45,7 @@ export default class Sprite {
         this.transform.rotateZ(this.zAngle)
         this.transform.scale(this.xScale, this.yScale)
 
-        graphics.transform(this.transform.a, this.transform.b, this.transform.c, this.transform.d, this.transform.e, this.transform.f)
+        graphics.transform(this.transform.xAxis.x, this.transform.xAxis.y, this.transform.yAxis.x, this.transform.yAxis.y, this.transform.origin.x, this.transform.origin.y)
 
         const centerX = -this.width * this.anchor.x
         const centerY = -this.height * this.anchor.y

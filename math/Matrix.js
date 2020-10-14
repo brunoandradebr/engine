@@ -1,3 +1,5 @@
+import { Vector } from "./index.js"
+
 export default class Matrix {
 
     constructor(m = null) {
@@ -8,6 +10,11 @@ export default class Matrix {
             [0, 0, 1, 0],
             [0, 0, 0, 1],
         ]
+
+        this.xAxis = new Vector(this.m[0][0], this.m[1][0], this.m[2][0])
+        this.yAxis = new Vector(this.m[0][1], this.m[1][1], this.m[2][1])
+        this.zAxis = new Vector(this.m[0][2], this.m[1][2], this.m[2][2])
+        this.origin = new Vector(this.m[0][3], this.m[1][3], this.m[2][3])
 
     }
 
@@ -87,6 +94,22 @@ export default class Matrix {
         this.m[3][1] = m4_2
         this.m[3][2] = m4_3
         this.m[3][3] = m4_4
+
+        this.xAxis.x = this.m[0][0]
+        this.xAxis.y = this.m[1][0]
+        this.xAxis.z = this.m[2][0]
+
+        this.yAxis.x = this.m[0][1]
+        this.yAxis.y = this.m[1][1]
+        this.yAxis.z = this.m[2][1]
+
+        this.zAxis.x = this.m[0][2]
+        this.zAxis.y = this.m[1][2]
+        this.zAxis.z = this.m[2][2]
+
+        this.origin.x = this.m[0][3]
+        this.origin.y = this.m[1][3]
+        this.origin.z = this.m[2][3]
 
         return this
 

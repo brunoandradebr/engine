@@ -9,6 +9,10 @@ points[0] = new Sprite(new Vector(-.5, .5, -0.5), 5, 5, 'cyan', 0)
 points[1] = new Sprite(new Vector(-.5, -.5, -0.5), 5, 5, 'cyan', 0)
 points[2] = new Sprite(new Vector(.5, -.5, -0.5), 5, 5, 'cyan', 0)
 points[3] = new Sprite(new Vector(.5, .5, -0.5), 5, 5, 'cyan', 0)
+points[4] = new Sprite(new Vector(-.5, .5, 0.5), 5, 5, 'cyan', 0)
+points[5] = new Sprite(new Vector(-.5, -.5, 0.5), 5, 5, 'cyan', 0)
+points[6] = new Sprite(new Vector(.5, -.5, 0.5), 5, 5, 'cyan', 0)
+points[7] = new Sprite(new Vector(.5, .5, 0.5), 5, 5, 'cyan', 0)
 
 points.map((point) => point.initialPosition = point.position.clone())
 
@@ -24,13 +28,18 @@ app.fixedUpdate = (dt) => {
     zAngle += 1 * dt
 
     points.map((point) => {
-        M.identity()
+
+        M
+            .identity()
             .translate(DEVICE.centerX, DEVICE.centerY)
-            .rotateX(0)
             .rotateZ(zAngle)
-            .scale(50, 50)
-        const p = M.multiply(point.initialPosition)
-        point.position.update(p.e, p.f)
+            .rotateX(xAngle)
+            .rotateY(yAngle)
+            .scale(100, 100, 100)
+            .multiply(point.initialPosition)
+
+        point.position.update(M.origin.x, M.origin.y)
+
     })
 
 }
