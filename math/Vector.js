@@ -11,9 +11,15 @@ export default class Vector {
     }
 
     update(x, y, z) {
-        this.x = x || this.x
-        this.y = y || this.y
-        this.z = z || this.z
+        if (x.constructor.name === 'Vector') {
+            this.x = x.x
+            this.y = x.y
+            this.z = x.z
+        } else {
+            this.x = x || this.x
+            this.y = y || this.y
+            this.z = z || this.z
+        }
     }
 
     add(v) {
