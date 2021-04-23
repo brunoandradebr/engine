@@ -4,6 +4,7 @@ const PI = Math.PI
 const PI2 = 2 * PI
 const toRad = PI / 180
 const toDeg = 180 / PI
+const random = (scale = 1, signed = false) => signed ? ((Math.random() - .5) * 2) * scale : Math.random() * scale
 
 const DEVICE = {
     width: window.innerWidth,

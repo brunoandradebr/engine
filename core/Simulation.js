@@ -38,6 +38,9 @@ export default class Simulation {
             dt = time - lastTime
             // updates last time to current time
             lastTime = time
+            
+            if (dt > 1000) dt = 1000
+
             // accumulates delta time
             frameTimeAccumulator += dt
 

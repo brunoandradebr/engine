@@ -125,8 +125,19 @@ export default class Matrix {
 
     preMultiply(matrix) {
 
-        const A = matrix.m
+        let A = matrix.m
         const B = this.m
+
+        if (matrix.constructor.name == 'Matrix') {
+            A = matrix.m
+        } else {
+            A = new Matrix([
+                [1, 0, 0, matrix.x],
+                [0, 1, 0, matrix.y],
+                [0, 0, 1, matrix.z],
+                [0, 0, 0, 1],
+            ]).m
+        }
 
         // first row
         const m1_1 = A[0][0] * B[0][0] + A[0][1] * B[1][0] + A[0][2] * B[2][0] + A[0][3] * B[3][0]
@@ -174,6 +185,21 @@ export default class Matrix {
 
     }
 
+    setPerspectiveProjection() {
+
+        const s = 1000 / (1000 + this.vector.z)
+
+        const projection = new Matrix([
+            [s, 0, 0, DEVICE.centerX],
+            [0, s, 0, DEVICE.centerY],
+            [0, 0, 1, 0],
+            [0, 0, 0, 1],
+        ])
+
+        return this.preMultiply(projection)
+
+    }
+
     rotateX(angle) {
 
         const rad = angle * toRad
@@ -182,8 +208,8 @@ export default class Matrix {
 
         const R = new Matrix([
             [1, 0, 0, 0],
-            [0, c, s, 0],
-            [0, -s, c, 0],
+            [0, c, -s, 0],
+            [0, s, c, 0],
             [0, 0, 0, 1],
         ])
 
@@ -197,9 +223,9 @@ export default class Matrix {
         const s = Math.sin(rad)
 
         const R = new Matrix([
-            [c, 0, -s, 0],
+            [c, 0, s, 0],
             [0, 1, 0, 0],
-            [s, 0, c, 0],
+            [-s, 0, c, 0],
             [0, 0, 0, 1],
         ])
 
@@ -213,8 +239,8 @@ export default class Matrix {
         const s = Math.sin(rad)
 
         const R = new Matrix([
-            [c, s, 0, 0],
-            [-s, c, 0, 0],
+            [c, -s, 0, 0],
+            [s, c, 0, 0],
             [0, 0, 1, 0],
             [0, 0, 0, 1],
         ])
