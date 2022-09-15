@@ -33,6 +33,8 @@ export default class Cube {
         this.lines[11] = { a: this.points[2], b: this.points[6] }
 
         this.position = position
+        this.initialPosition = position.clone();
+        this.transform = new Matrix()
         this.size = size
         this.xAngle = 0
         this.yAngle = 0

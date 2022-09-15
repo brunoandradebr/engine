@@ -41,6 +41,8 @@ export default class Coffin {
         this.lines[17] = { a: this.points[5], b: this.points[11] }
 
         this.position = position
+        this.initialPosition = position.clone();
+        this.transform = new Matrix()
         this.size = size
         this.xAngle = 0
         this.yAngle = 0

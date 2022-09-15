@@ -18,6 +18,8 @@ export default class Sphere {
         this.points.map((point) => point.tmp = point.clone())
 
         this.position = position
+        this.initialPosition = position.clone();
+        this.transform = new Matrix()
         this.size = size
         this.xAngle = 0
         this.yAngle = 0

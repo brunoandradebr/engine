@@ -38,7 +38,7 @@ export default class Simulation {
             dt = time - lastTime
             // updates last time to current time
             lastTime = time
-            
+
             if (dt > 1000) dt = 1000
 
             // accumulates delta time
@@ -48,13 +48,13 @@ export default class Simulation {
             while (frameTimeAccumulator >= desiredFPS) {
 
                 // run scene update
-                this.fixedUpdate(desiredFPS * 0.05)
+                this.fixedUpdate(desiredFPS * 0.05, time)
 
                 // remove from accumulated time chunks of desired fps
                 frameTimeAccumulator -= desiredFPS
             }
 
-            this.update(desiredFPS * 0.05)
+            this.update(desiredFPS * 0.05, time)
 
             // calculates alpha
             alpha = frameTimeAccumulator / desiredFPS
@@ -91,7 +91,7 @@ export default class Simulation {
      * 
      * @return {Void} 
      */
-    fixedUpdate(dt) { }
+    fixedUpdate(dt, elapsedTime) { }
 
     /**
      * 
