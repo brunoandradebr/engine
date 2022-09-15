@@ -61,6 +61,13 @@ export default class Vector {
         return new Vector(x, y, z)
     }
 
+    get reverse() {
+        this.x *= -1
+        this.y *= -1
+        this.z *= -1
+        return this
+    }
+
     get length() {
         return Math.sqrt(this.dot(this))
     }
@@ -96,6 +103,7 @@ export default class Vector {
 
         graphics.save()
         graphics.strokeStyle = debugOptions.lineColor
+        graphics.lineWidth = debugOptions.lineWidth
         graphics.beginPath()
         graphics.moveTo(debugOptions.center.x, debugOptions.center.y)
         graphics.lineTo(debugOptions.center.x + this.x, debugOptions.center.y + this.y)

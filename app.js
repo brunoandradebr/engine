@@ -8,6 +8,8 @@ const cube = new Cube(new Vector(0, 0, 0), 100)
 const sphere = new Sphere(new Vector(0, 0, 0), 100)
 const pyramid = new Pyramid(new Vector(0, 0, 0), 100)
 
+const SCREEN_CENTER = new Vector(DEVICE.centerX, DEVICE.centerY)
+
 app.fixedUpdate = (dt, elapsedTime) => {
 
     // sphere transform
@@ -60,6 +62,7 @@ app.fixedUpdate = (dt, elapsedTime) => {
 
     // cube transform
     cube.yAngle = Math.cos(elapsedTime * 0.001) * 45
+
     cube.points.map((point) => {
 
         cube.transform
@@ -85,5 +88,17 @@ app.render = (graphics) => {
     cube.draw(graphics)
     sphere.draw(graphics)
     pyramid.draw(graphics)
+
+    cube.transform.zAxis.normalize.multiplyScalar(cube.size * .5).debug(graphics, { center: cube.position.clone().add(SCREEN_CENTER), lineWidth: 2, lineColor: 'lime' })
+    cube.transform.xAxis.normalize.multiplyScalar(cube.size * .5).debug(graphics, { center: cube.position.clone().add(SCREEN_CENTER), lineWidth: 2, lineColor: '#f48' })
+    cube.transform.yAxis.normalize.multiplyScalar(cube.size * .5).reverse.debug(graphics, { center: cube.position.clone().add(SCREEN_CENTER), lineWidth: 2, lineColor: 'royalblue' })
+
+    pyramid.transform.zAxis.normalize.multiplyScalar(pyramid.size * .5).debug(graphics, { center: pyramid.position.clone().add(SCREEN_CENTER), lineWidth: 2, lineColor: 'lime' })
+    pyramid.transform.xAxis.normalize.multiplyScalar(pyramid.size * .5).debug(graphics, { center: pyramid.position.clone().add(SCREEN_CENTER), lineWidth: 2, lineColor: '#f48' })
+    pyramid.transform.yAxis.normalize.multiplyScalar(pyramid.size * .5).reverse.debug(graphics, { center: pyramid.position.clone().add(SCREEN_CENTER), lineWidth: 2, lineColor: 'royalblue' })
+
+    sphere.transform.zAxis.normalize.multiplyScalar(sphere.size * .5).debug(graphics, { center: sphere.position.clone().add(SCREEN_CENTER), lineWidth: 2, lineColor: 'lime' })
+    sphere.transform.xAxis.normalize.multiplyScalar(sphere.size * .5).debug(graphics, { center: sphere.position.clone().add(SCREEN_CENTER), lineWidth: 2, lineColor: '#f48' })
+    sphere.transform.yAxis.normalize.multiplyScalar(sphere.size * .5).reverse.debug(graphics, { center: sphere.position.clone().add(SCREEN_CENTER), lineWidth: 2, lineColor: 'royalblue' })
 
 }
