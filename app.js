@@ -15,8 +15,8 @@ app.fixedUpdate = (dt, elapsedTime) => {
     // sphere transform
     sphere.yAngle += 2 * dt
     sphere.xAngle += 2 * dt
-    sphere.position.x = sphere.initialPosition.x + Math.cos(elapsedTime * 0.001) * ((DEVICE.width * 0.5) - DEVICE.width * 0.2)
-    sphere.position.z = sphere.initialPosition.z + Math.sin(elapsedTime * 0.001) * ((DEVICE.height * 0.5) - DEVICE.height)
+    sphere.position.x = sphere.initialPosition.x + Math.cos(elapsedTime * dt * 0.001) * ((DEVICE.width * 0.5) - DEVICE.width * 0.2)
+    sphere.position.z = sphere.initialPosition.z + Math.sin(elapsedTime * dt * 0.001) * ((DEVICE.height * 0.5) - DEVICE.height)
 
     sphere.points.map((point) => {
 
@@ -39,8 +39,8 @@ app.fixedUpdate = (dt, elapsedTime) => {
     // pyramid transform
     pyramid.yAngle += 2 * dt
     pyramid.xAngle += 2 * dt
-    pyramid.position.x = pyramid.initialPosition.x - Math.cos(elapsedTime * 0.001) * ((DEVICE.width * 0.5) - DEVICE.width * 0.2)
-    pyramid.position.z = pyramid.initialPosition.z - Math.sin(elapsedTime * 0.001) * ((DEVICE.height * 0.5) - DEVICE.height)
+    pyramid.position.x = pyramid.initialPosition.x - Math.cos(elapsedTime * dt * 0.001) * ((DEVICE.width * 0.5) - DEVICE.width * 0.2)
+    pyramid.position.z = pyramid.initialPosition.z - Math.sin(elapsedTime * dt * 0.001) * ((DEVICE.height * 0.5) - DEVICE.height)
 
     pyramid.points.map((point) => {
 
@@ -61,7 +61,7 @@ app.fixedUpdate = (dt, elapsedTime) => {
     })
 
     // cube transform
-    cube.yAngle = Math.cos(elapsedTime * 0.001) * 45
+    cube.yAngle = Math.cos(elapsedTime * dt * 0.001) * 45
 
     cube.points.map((point) => {
 
