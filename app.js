@@ -1,14 +1,16 @@
 import Simulation from './core/Simulation.js'
-import { Matrix, Vector } from './math/index.js'
-import { Sprite, Cube, Sphere, Coffin } from './display/index.js'
+import { Vector } from './math/index.js'
+import { Cube, Sphere, Pyramid } from './display/index.js'
 
 const app = new Simulation('#stage')
 
 const cube = new Cube(new Vector(0, 0, 0), 100)
 const sphere = new Sphere(new Vector(0, 0, 0), 100)
+const pyramid = new Pyramid(new Vector(0, 0, 0), 100)
 
 app.fixedUpdate = (dt, elapsedTime) => {
 
+    // sphere transform
     sphere.yAngle += 2 * dt
     sphere.xAngle += 2 * dt
     sphere.position.x = sphere.initialPosition.x + Math.cos(elapsedTime * 0.001) * ((DEVICE.width * 0.5) - DEVICE.width * 0.2)
@@ -32,8 +34,32 @@ app.fixedUpdate = (dt, elapsedTime) => {
 
     })
 
-    cube.yAngle = Math.cos(elapsedTime * 0.001) * 45
+    // pyramid transform
+    pyramid.yAngle += 2 * dt
+    pyramid.xAngle += 2 * dt
+    pyramid.position.x = pyramid.initialPosition.x - Math.cos(elapsedTime * 0.001) * ((DEVICE.width * 0.5) - DEVICE.width * 0.2)
+    pyramid.position.z = pyramid.initialPosition.z - Math.sin(elapsedTime * 0.001) * ((DEVICE.height * 0.5) - DEVICE.height)
 
+    pyramid.points.map((point) => {
+
+        pyramid.transform
+            .identity()
+            .translate(pyramid.position.x, pyramid.position.y, pyramid.position.z)
+            .rotateZ(pyramid.zAngle)
+            .rotateY(pyramid.yAngle)
+            .rotateX(pyramid.xAngle)
+            .scale(pyramid.size, pyramid.size, pyramid.size)
+
+        pyramid.transform.multiply(point.tmp)
+
+        pyramid.transform.setPerspectiveProjection()
+
+        point.update(pyramid.transform.vector)
+
+    })
+
+    // cube transform
+    cube.yAngle = Math.cos(elapsedTime * 0.001) * 45
     cube.points.map((point) => {
 
         cube.transform
@@ -56,7 +82,8 @@ app.fixedUpdate = (dt, elapsedTime) => {
 
 app.render = (graphics) => {
 
-    sphere.draw(graphics)
     cube.draw(graphics)
+    sphere.draw(graphics)
+    pyramid.draw(graphics)
 
 }
