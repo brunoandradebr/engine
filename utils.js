@@ -48,3 +48,23 @@ addEventListener('touchmove', (e) => {
     mouse.y = e.touches[0].clientY
     mouse.isDown = true
 })
+
+const loadObjFile = async (fileURL) => {
+
+    const file = await fetch(fileURL)
+    const content = await file.text()
+    const lines = content.split('\n')
+
+    const vertices = lines.filter(line => line.includes('v ')).map(v => v.split(' ')).map(components => ({
+        x: Number(components[1]),
+        y: Number(components[2]),
+        z: Number(components[3]),
+    }))
+
+    const faces = lines.filter(line => line.includes('f ')).map(f => f.split(' ')).map(vertexIndex => ([
+        ...vertexIndex.filter(index => index).map(index => Number(index.split('/')[0])).slice(1),
+    ]))
+
+    return { vertices, faces }
+
+}
