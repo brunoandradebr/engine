@@ -121,16 +121,16 @@ app.render = (graphics) => {
 
     cube.draw(graphics)
 
-    cube.transform.zAxis.normalize.multiplyScalar(cube.size * .5).debug(graphics, { center: cube.position.clone().add(SCREEN_CENTER), lineWidth: 2, lineColor: 'lime' })
-    cube.transform.xAxis.normalize.multiplyScalar(cube.size * .5).debug(graphics, { center: cube.position.clone().add(SCREEN_CENTER), lineWidth: 2, lineColor: '#f48' })
-    cube.transform.yAxis.normalize.multiplyScalar(cube.size * .5).reverse.debug(graphics, { center: cube.position.clone().add(SCREEN_CENTER), lineWidth: 2, lineColor: 'royalblue' })
+    // cube.transform.zAxis.normalize.multiplyScalar(cube.size * .5).debug(graphics, { center: cube.position.clone().add(SCREEN_CENTER), lineWidth: 2, lineColor: 'lime' })
+    // cube.transform.xAxis.normalize.multiplyScalar(cube.size * .5).debug(graphics, { center: cube.position.clone().add(SCREEN_CENTER), lineWidth: 2, lineColor: '#f48' })
+    // cube.transform.yAxis.normalize.multiplyScalar(cube.size * .5).reverse.debug(graphics, { center: cube.position.clone().add(SCREEN_CENTER), lineWidth: 2, lineColor: 'royalblue' })
 
-    cube.transform.zAxis.normalize.multiplyScalar(cube.size * .5).debug(graphics, { center: cube.position.clone().add(SCREEN_CENTER), lineWidth: 2, lineColor: 'lime' })
-    cube.transform.xAxis.normalize.multiplyScalar(cube.size * .5).debug(graphics, { center: cube.position.clone().add(SCREEN_CENTER), lineWidth: 2, lineColor: '#f48' })
-    cube.transform.yAxis.normalize.multiplyScalar(cube.size * .5).reverse.debug(graphics, { center: cube.position.clone().add(SCREEN_CENTER), lineWidth: 2, lineColor: 'royalblue' })
+    // cube.transform.zAxis.normalize.multiplyScalar(cube.size * .5).debug(graphics, { center: cube.position.clone().add(SCREEN_CENTER), lineWidth: 2, lineColor: 'lime' })
+    // cube.transform.xAxis.normalize.multiplyScalar(cube.size * .5).debug(graphics, { center: cube.position.clone().add(SCREEN_CENTER), lineWidth: 2, lineColor: '#f48' })
+    // cube.transform.yAxis.normalize.multiplyScalar(cube.size * .5).reverse.debug(graphics, { center: cube.position.clone().add(SCREEN_CENTER), lineWidth: 2, lineColor: 'royalblue' })
 
-    earth.transform.zAxis.normalize.multiplyScalar(earth.size * .5).debug(graphics, { center: earth.position.clone().add(SCREEN_CENTER), lineWidth: 2, lineColor: 'lime' })
-    earth.transform.xAxis.normalize.multiplyScalar(earth.size * .5).debug(graphics, { center: earth.position.clone().add(SCREEN_CENTER), lineWidth: 2, lineColor: '#f48' })
-    earth.transform.yAxis.normalize.multiplyScalar(earth.size * .5).reverse.debug(graphics, { center: earth.position.clone().add(SCREEN_CENTER), lineWidth: 2, lineColor: 'royalblue' })
+    // earth.transform.zAxis.normalize.multiplyScalar(earth.size * .5).debug(graphics, { center: earth.position.clone().add(SCREEN_CENTER), lineWidth: 2, lineColor: 'lime' })
+    // earth.transform.xAxis.normalize.multiplyScalar(earth.size * .5).debug(graphics, { center: earth.position.clone().add(SCREEN_CENTER), lineWidth: 2, lineColor: '#f48' })
+    // earth.transform.yAxis.normalize.multiplyScalar(earth.size * .5).reverse.debug(graphics, { center: earth.position.clone().add(SCREEN_CENTER), lineWidth: 2, lineColor: 'royalblue' })
 
 }
