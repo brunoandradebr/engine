@@ -46,12 +46,15 @@ export default class Model {
       this.yAngle = 0
       this.zAngle = 0
 
+      this.lineColor = 'rgba(0, 0, 0, 0.3)'
+      this.fillColor = 'rgba(255, 255,255, 0.3)'
+
    }
 
    draw(graphics) {
 
-      graphics.fillStyle = 'rgba(255, 255,255, 0.3)'
-      graphics.strokeStyle = 'rgba(0, 0, 0, 0.3)'
+      graphics.fillStyle = this.fillColor
+      graphics.strokeStyle = this.lineColor
 
       for (let i = 0; i < this.objData.faces.length; i++) {
 
@@ -67,14 +70,16 @@ export default class Model {
             }
          }
 
+         graphics.closePath()
+
          graphics.fill()
          graphics.stroke()
 
 
       }
 
-      graphics.fillStyle = 'rgba(0, 0, 0, .4)'
-      let pointSize = this.normalized ? this.size * 0.05 : this.size
+      graphics.fillStyle = this.lineColor
+      let pointSize = this.normalized ? this.size * 0.05 : 5
       this.points.map((point) => {
          graphics.fillRect(
             point.x - (pointSize * 0.5),
