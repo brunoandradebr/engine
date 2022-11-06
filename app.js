@@ -11,12 +11,71 @@ const earth = new Model(new Vector(0, -100, 0), 100, earthObj, true)
 const dog = new Model(new Vector(0, 200, 0), 5, dogObj)
 const cube = new Cube(new Vector(0, 0, 0), 100)
 
+const vertices = []
+for (let x = 0; x < 40; x++) {
+    for (let y = 0; y < 40; y++) {
+        const vertex = {
+            x: -(20 * 0.2) + x * 0.2,
+            y: -(20 * 0.2) + y * 0.2,
+            z: 0
+        }
+        vertices.push(vertex)
+    }
+}
+
+const mesh = new Model(new Vector(0, 500, 500), 200, {
+    faces: [
+        [1, 2, 41],
+        [2, 41, 41 + 1],
+    ],
+    vertices: vertices,
+})
+
+mesh.lineColor = 'rgba(255, 255, 255, .3)'
+mesh.fillColor = 'rgba(255, 255, 255, 0.04)'
+
 const SCREEN_CENTER = new Vector(DEVICE.centerX, DEVICE.centerY)
+
+const centerPointIndex = 800 - 20
 
 app.fixedUpdate = (dt, elapsedTime) => {
 
+    // mesh
+    mesh.xAngle = -90
+    mesh.yAngle += .4 * dt
+
+    mesh.points.map((point, i) => {
+
+        mesh.transform
+            .identity()
+            .translate(mesh.position.x, mesh.position.y, mesh.position.z)
+            .rotateZ(mesh.zAngle)
+            .rotateY(mesh.yAngle)
+            .rotateX(mesh.xAngle)
+            .scale(mesh.size, mesh.size, mesh.size)
+
+        for (let j = -4; j <= 4; j++) {
+            if (i >= (centerPointIndex - (40 * j)) - (10 - j) && i <= (centerPointIndex - (40 * j)) + (10 - j)) {
+                mesh.transform
+                    .identity()
+                    .translate(mesh.position.x, mesh.position.y + Math.cos(elapsedTime * 0.004 + j * .4) * 50, mesh.position.z)
+                    .rotateZ(mesh.zAngle)
+                    .rotateY(mesh.yAngle)
+                    .rotateX(mesh.xAngle)
+                    .scale(mesh.size, mesh.size, mesh.size)
+            }
+        }
+
+        mesh.transform.multiply(point.tmp)
+
+        mesh.transform.setPerspectiveProjection()
+
+        point.update(mesh.transform.vector)
+
+    })
+
     // dog transform
-    dog.yAngle += 1
+    dog.yAngle += 1 * dt
     dog.xAngle = 90
     dog.zAngle = 0
 
@@ -110,6 +169,8 @@ app.fixedUpdate = (dt, elapsedTime) => {
 }
 
 app.render = (graphics) => {
+
+    mesh.draw(graphics)
 
     if (dog.position.z > earth.position.z) {
         dog.draw(graphics)
